@@ -75,9 +75,14 @@ public class Main {
     }
 
     private static void menu(){
-        System.out.println("-----------------------------------------------");
-        System.out.println(" 0. EXIT | 1. LOGIN | 2. REGISTER");
-        System.out.println("------------------------------------------------");
+        if(currentSC == 0) {
+            System.out.println("-----------------------------------------------");
+            System.out.println(" 0. EXIT | 1. LOGIN | 2. REGISTER");
+            System.out.println("------------------------------------------------");
+        } else {
+            System.out.println("-------------------------------------------------");
+            System.out.println(" 0. EXIT | 1. VER TODOS LOS ANIMES | 2. VER ANIMES DE UN GENERO | 3. LOGOUT " + username);
+        }
     }
 
     private static void login() throws SQLException {
@@ -87,11 +92,12 @@ public class Main {
         String sql = "SELECT * from usuarios where nombre = ?";
         PreparedStatement pst = con.prepareStatement(sql);
         pst.setString(1,username);
-        ResultSet rs = pst.executeQuery(sql);
+        ResultSet rs = pst.executeQuery();
 
         if (rs.next()){
             if(rs.getString("nombre").equals(username)) {
                 userID = rs.getInt("id_usuario");
+                currentSC = 1;
             }
         } else {
             System.out.println("Usuario no encontrado");
