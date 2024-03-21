@@ -18,6 +18,7 @@ public class Main {
         String host = "jdbc:sqlite:src/main/resources/aNIMENetwork";
         con = DriverManager.getConnection(host);
         printInicial();
+        menu();
     }
 
 
@@ -37,6 +38,12 @@ public class Main {
                 "|_  / _ \\ '_ \\| | | / __| | |_  / _ \\| '__/ _ \\| |       \n" +
                 " / /  __/ |_) | |_| \\__ \\ | |/ / (_) | | | (_) | |       \n" +
                 "/___\\___| .__/ \\__,_|___/ | /___\\___/|_|  \\___/| |       \n" +
-                "        |_|                \\_\\                /_/        ");
+                "        |_|                \\_\\                /_/        " + ANSI_RESET);
+    }
+
+    private static void menu(){
+        System.out.println("-----------------------------------------------");
+        System.out.println(" 0. EXIT | 1. LOGIN | 2. REGISTER");
+        System.out.println("------------------------------------------------");
     }
 }
