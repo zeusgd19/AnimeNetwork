@@ -2,6 +2,7 @@ package org.example;
 
 import java.sql.*;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Main {
     public static final String ANSI_RESET = "\u001B[0m";
@@ -46,7 +47,7 @@ public class Main {
         int option = -1;
         try {
             option = Integer.parseInt(sc.next());
-            if ((currentSC == 0 && option > 3) || (currentSC == 1 && option > 6)){
+            if ((currentSC == 0 && option > 2) || (currentSC == 1 && option > 4)){
                 System.out.println("Opcion incorrecta");
             }
         }catch (IllegalArgumentException iae){
@@ -80,11 +81,11 @@ public class Main {
         if(currentSC == 0) {
             System.out.println("-----------------------------------------------");
             System.out.println(" 0. EXIT | 1. LOGIN | 2. REGISTER");
-            System.out.println("------------------------------------------------");
+            System.out.println("-----------------------------------------------");
         } else {
-            System.out.println("-----------------------------------------------------------------------------------------");
+            System.out.println("-------------------------------------------------------------------------------------------------------------");
             System.out.println(" 0. EXIT | 1. VER TODOS LOS ANIMES | 2. VER ANIMES DE UN GENERO | 3. AÑADIR UN ANIME | 4. LOGOUT " + username);
-            System.out.println("-----------------------------------------------------------------------------------------");
+            System.out.println("-------------------------------------------------------------------------------------------------------------");
         }
     }
 
