@@ -1,9 +1,6 @@
 package org.example;
 
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Scanner;
 
 public class Main {
@@ -50,5 +47,38 @@ public class Main {
         System.out.println("-----------------------------------------------");
         System.out.println(" 0. EXIT | 1. LOGIN | 2. REGISTER");
         System.out.println("------------------------------------------------");
+    }
+
+    private static void login() throws SQLException {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Usuario: ");
+        username = sc.nextLine();
+        String sql = "SELECT * from usuarios where nombre = ?";
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setString(1,username);
+        ResultSet rs = pst.executeQuery(sql);
+
+        if (rs.next()){
+            if(rs.getString("nombre").equals(username)) {
+                userID = rs.getInt("id_usuario");
+            }
+        } else {
+            System.out.println("Usuario no encontrado");
+        }
+    }
+    private static void register() throws SQLException {
+        Scanner sc = new Scanner(System.in);
+        PreparedStatement st = null;
+        System.out.println("Name: ");
+        String name = sc.nextLine();
+
+        System.out.println("Lastname: ");
+        String lastname = sc.nextLine();
+
+        String query = "INSERT INTO usuarios (nombre,apellidos) VALUES(?,?)";
+        st = con.prepareStatement(query);
+        st.setString(1,name);
+        st.setString(2,lastname);
+        st.executeUpdate();
     }
 }
