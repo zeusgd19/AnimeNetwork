@@ -1,7 +1,10 @@
 package org.example;
 
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
 
 public class Main {
     public static final String ANSI_RESET = "\u001B[0m";
@@ -14,6 +17,8 @@ public class Main {
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
     private static java.sql.Connection con;
+    private static int userID;
+    private static String username;
     public static void main(String[] args) throws SQLException {
         String host = "jdbc:sqlite:src/main/resources/aNIMENetwork";
         con = DriverManager.getConnection(host);
