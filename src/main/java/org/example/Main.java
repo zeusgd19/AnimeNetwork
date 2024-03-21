@@ -16,12 +16,43 @@ public class Main {
     private static java.sql.Connection con;
     private static int userID;
     private static String username;
+
+    private static int currentSC;
     public static void main(String[] args) throws SQLException {
         String host = "jdbc:sqlite:src/main/resources/aNIMENetwork";
         con = DriverManager.getConnection(host);
-        printInicial();
-        menu();
+        int option;
+        while (true) {
+            printInicial();
+            menu();
+            option = getOption();
+            if (option == 0) break;
+            if (currentSC == 0) {
+                switch (option) {
+                    case 1: login();
+                        break;
+                    case 2: register();
+                        break;
+                }
+            }
+        }
+
+
     }
+    private static int getOption(){
+        Scanner sc = new Scanner(System.in);
+        int option = -1;
+        try {
+            option = Integer.parseInt(sc.next());
+            if ((currentSC == 0 && option > 3) || (currentSC == 1 && option > 6)){
+                System.out.println("Opcion incorrecta");
+            }
+        }catch (IllegalArgumentException iae){
+            System.out.println("Opción incorrecta");
+        }
+        return option;
+    }
+
 
 
 
