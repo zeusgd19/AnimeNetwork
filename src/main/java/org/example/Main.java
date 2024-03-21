@@ -38,6 +38,7 @@ public class Main {
             }
         }
 
+        con.close();
 
     }
     private static int getOption(){
@@ -82,7 +83,7 @@ public class Main {
             System.out.println("------------------------------------------------");
         } else {
             System.out.println("-----------------------------------------------------------------------------------------");
-            System.out.println(" 0. EXIT | 1. VER TODOS LOS ANIMES | 2. VER ANIMES DE UN GENERO | 3. LOGOUT " + username);
+            System.out.println(" 0. EXIT | 1. VER TODOS LOS ANIMES | 2. VER ANIMES DE UN GENERO | 3. AÑADIR UN ANIME | 4. LOGOUT " + username);
             System.out.println("-----------------------------------------------------------------------------------------");
         }
     }
@@ -119,5 +120,16 @@ public class Main {
         st.setString(1,name);
         st.setString(2,lastname);
         st.executeUpdate();
+    }
+
+    private static void viewAllAnimes() throws SQLException {
+        Statement st;
+        String sql = "SELECT * FROM anime";
+        st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()){
+            System.out.print(rs.getInt("ID") + "\t");
+            System.out.println(rs.getString("nombre"));
+        }
     }
 }
