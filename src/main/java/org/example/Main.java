@@ -80,8 +80,9 @@ public class Main {
             System.out.println(" 0. EXIT | 1. LOGIN | 2. REGISTER");
             System.out.println("------------------------------------------------");
         } else {
-            System.out.println("-------------------------------------------------");
+            System.out.println("-----------------------------------------------------------------------------------------");
             System.out.println(" 0. EXIT | 1. VER TODOS LOS ANIMES | 2. VER ANIMES DE UN GENERO | 3. LOGOUT " + username);
+            System.out.println("-----------------------------------------------------------------------------------------");
         }
     }
 
