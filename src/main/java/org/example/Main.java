@@ -22,8 +22,8 @@ public class Main {
         String host = "jdbc:sqlite:src/main/resources/aNIMENetwork";
         con = DriverManager.getConnection(host);
         int option;
+        printInicial();
         while (true) {
-            printInicial();
             menu();
             option = getOption();
             if (option == 0) break;
