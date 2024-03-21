@@ -25,6 +25,7 @@ public class Main {
         printInicial();
         while (true) {
             menu();
+
             option = getOption();
             if (option == 0) break;
             if (currentSC == 0) {
