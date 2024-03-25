@@ -151,4 +151,57 @@ public class Main {
             System.out.println(rs.getString("genero"));
         }
     }
+
+    private static void addAnime() throws SQLException {
+        String nombre;
+        String genero;
+        int id_genero;
+        String query;
+        PreparedStatement st;
+        ResultSet rs;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Nombre del anime: ");
+        nombre = sc.nextLine();
+
+        System.out.println("Genero del anime: ");
+        genero = sc.nextLine();
+
+        query = "SELECT * FROM generoAnime WHERE genero = ?";
+        st = con.prepareStatement(query);
+        st.setString(1,genero);
+
+        rs = st.executeQuery();
+        st.close();
+        if(rs.next()){
+            id_genero = rs.getInt("id_genero");
+            query = "INSERT INTO anime (nombre,id_genero) VALUES (?,?)";
+            st = con.prepareStatement(query);
+            st.setString(1,nombre);
+            st.setInt(2,id_genero);
+            st.executeUpdate();
+            st.close();
+        } else {
+            rs.close();
+            query = "INSERT INTO generoAnime (genero) VALUES (?)";
+            st = con.prepareStatement(query);
+            st.setString(1,genero);
+            st.executeUpdate();
+            st.close();
+
+            query = "SELECT * FROM generoAnime WHERE genero = ?";
+            st = con.prepareStatement(query);
+            st.setString(1,genero);
+            rs = st.executeQuery();
+            id_genero = rs.getInt("id_genero");
+            st.close();
+            rs.close();
+
+            query = "INSERT INTO anime (nombre,id_genero) VALUES (?,?)";
+            st = con.prepareStatement(query);
+            st.setString(1,nombre);
+            st.setInt(2,id_genero);
+            st.executeUpdate();
+            st.close();
+        }
+    }
 }
