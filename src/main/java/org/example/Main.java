@@ -43,7 +43,9 @@ public class Main {
                         break;
                     case 2 : generoAnime();
                         break;
-                    
+                    case 3 : addAnime();
+                        break;
+                    case 4 : logout();
                 }
             }
         }
@@ -64,8 +66,6 @@ public class Main {
         }
         return option;
     }
-
-
 
 
     private static void printInicial() {
@@ -143,14 +143,71 @@ public class Main {
         }
     }
     private static void generoAnime() throws SQLException {
-        Statement st;
-        String sql = "SELECT * FROM generoAnime WHERE genero LIKE '%?%'";
-        st = con.createStatement();
-        ResultSet rs = st.executeQuery(sql);
+        Scanner sc = new Scanner(System.in);
+        PreparedStatement pt;
+        ResultSet rs;
+        System.out.println("Dime el genero que estas buscando");
+        String tipoGenero = sc.nextLine();
+        String sql = "SELECT * FROM generoAnime WHERE genero =2 ?";
+        pt = con.prepareStatement(sql);
+        pt.setString(1, tipoGenero);
+        rs = pt.executeQuery();
+        int id_genero = 0;
+
+        if (rs.next()){
+            id_genero = rs.getInt("id_genero");
+        }
+        pt.close();
+        rs.close();
+        String sql2 = "SELECT * FROM anime WHERE id_genero = ?";
+        pt = con.prepareStatement(sql);
+        pt.setInt(1, id_genero);
+        rs = pt.executeQuery();
         while (rs.next()){
-            System.out.println(rs.getString("genero"));
+            System.out.print(rs.getInt("id") + " ");
+            System.out.println(rs.getString("nombre"));
         }
     }
+    private static void logout(){
+        currentSC = 0;
+    }
+    private static void menuGenero(){
+        if (currentSC == 2){
+            System.out.println("1. Isekai | 2.Sci-Fi");
+        }
+    }
+    private static void generoAnime2() throws SQLException {
+        PreparedStatement pt;
+        int option;
+        option = getOption();
+        while (true) {
+            menuGenero();
+            if (option == 2)
+                break;
+            if (currentSC == 2) {
+                switch (option) {
+                    case 1:
+                        String sql = "SELECT * FROM generoAnime WHERE genero LIKE %isekai%";
+                        break;
+                    case 2:
+                        String sql2 = "SELECT * FROM generoAnime WHERE genero LIKE %SCI-FI%";
+                        break;
+                }
+            }
+        }
+    }
+    /*
+    private static void generoAnime3() throws SQLException {
+        ;
+        String sql = "SELECT * FROM generoAnime";
+        pt = con.prepareStatement(sql);
+        ResultSet rs = pt.executeQuery(sql);
+        while (rs.next()){
+            System.out.println(rs.getString("genero" + "\n"));
+            System.out.println(rs.getInt("id_genero"));
+        }
+
+    }*/
 
     private static void addAnime() throws SQLException {
         String nombre;
