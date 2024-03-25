@@ -41,7 +41,8 @@ public class Main {
                 switch (option){
                     case 1: viewAllAnimes();
                         break;
-
+                    case 2 : generoAnime();
+                        break;
                     
                 }
             }
@@ -139,6 +140,15 @@ public class Main {
         while (rs.next()){
             System.out.print(rs.getInt("ID") + "\t");
             System.out.println(rs.getString("nombre"));
+        }
+    }
+    private static void generoAnime() throws SQLException {
+        Statement st;
+        String sql = "SELECT * FROM generoAnime WHERE genero LIKE '%?%'";
+        st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()){
+            System.out.println(rs.getString("genero"));
         }
     }
 }
