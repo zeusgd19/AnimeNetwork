@@ -146,7 +146,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         PreparedStatement pt;
         ResultSet rs;
-        System.out.println("Dime el genero que estas buscando");
+        System.out.println("¿QUÉ GENERO DE ANIME ESTÁS BUSCANDO?");
         String tipoGenero = sc.nextLine();
         String sql = "SELECT * FROM generoAnime WHERE genero = ?";
         pt = con.prepareStatement(sql);
