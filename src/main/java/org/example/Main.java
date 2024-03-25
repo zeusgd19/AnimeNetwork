@@ -37,6 +37,14 @@ public class Main {
                         break;
                 }
             }
+            else {
+                switch (option){
+                    case 1: viewAllAnimes();
+                        break;
+
+                    
+                }
+            }
         }
 
         con.close();
