@@ -170,6 +170,7 @@ public class Main {
             System.out.println(rs.getString("nombre"));
         }
     }
+
     private static void logout(){
         currentSC = 0;
         username = "";
