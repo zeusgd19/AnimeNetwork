@@ -181,38 +181,6 @@ public class Main {
             System.out.println("1. Isekai | 2.Sci-Fi");
         }
     }
-    private static void generoAnime2() throws SQLException {
-        PreparedStatement pt;
-        int option;
-        option = getOption();
-        while (true) {
-            menuGenero();
-            if (option == 2)
-                break;
-            if (currentSC == 2) {
-                switch (option) {
-                    case 1:
-                        String sql = "SELECT * FROM generoAnime WHERE genero LIKE %isekai%";
-                        break;
-                    case 2:
-                        String sql2 = "SELECT * FROM generoAnime WHERE genero LIKE %SCI-FI%";
-                        break;
-                }
-            }
-        }
-    }
-    /*
-    private static void generoAnime3() throws SQLException {
-        ;
-        String sql = "SELECT * FROM generoAnime";
-        pt = con.prepareStatement(sql);
-        ResultSet rs = pt.executeQuery(sql);
-        while (rs.next()){
-            System.out.println(rs.getString("genero" + "\n"));
-            System.out.println(rs.getInt("id_genero"));
-        }
-
-    }*/
 
     private static void addAnime() throws SQLException {
         String nombre;
