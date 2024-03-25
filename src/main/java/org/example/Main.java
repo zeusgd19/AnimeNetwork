@@ -156,11 +156,13 @@ public class Main {
 
         if (rs.next()){
             id_genero = rs.getInt("id_genero");
+        } else {
+            System.out.println("Ese genero no existe");
         }
         pt.close();
         rs.close();
         String sql2 = "SELECT * FROM anime WHERE id_genero = ?";
-        pt = con.prepareStatement(sql);
+        pt = con.prepareStatement(sql2);
         pt.setInt(1, id_genero);
         rs = pt.executeQuery();
         while (rs.next()){
@@ -170,6 +172,8 @@ public class Main {
     }
     private static void logout(){
         currentSC = 0;
+        username = "";
+        userID = -1;
     }
     private static void menuGenero(){
         if (currentSC == 2){
