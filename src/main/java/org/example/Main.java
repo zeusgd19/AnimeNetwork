@@ -358,6 +358,14 @@ public class Main {
         String sql = "SELECT * FROM anime";
         st = con.createStatement();
         ResultSet rs = st.executeQuery(sql);
+        System.out.println(ANSI_PURPLE + "\n" +
+                "\n" +
+                "    _    _   _ ___ __  __ _____ ____  \n" +
+                "   / \\  | \\ | |_ _|  \\/  | ____/ ___| \n" +
+                "  / _ \\ |  \\| || || |\\/| |  _| \\___ \\ \n" +
+                " / ___ \\| |\\  || || |  | | |___ ___) |\n" +
+                "/_/   \\_\\_| \\_|___|_|  |_|_____|____/ \n" +
+                "\n" + ANSI_RESET);
         while (rs.next()){
             System.out.print(rs.getInt("ID") + "\t");
             System.out.println(rs.getString("nombre"));
@@ -367,7 +375,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         PreparedStatement pt;
         ResultSet rs;
-        System.out.println("\n" +
+        System.out.println(ANSI_PURPLE + "\n" +
                 "\n" +
                 "  _  ___          __                                               _            \n" +
                 " (_)/ _ \\ _   _  /_/    __ _  ___ _ __   ___ _ __ ___     ___  ___| |_ __ _ ___ \n" +
@@ -416,6 +424,14 @@ public class Main {
         String query;
         PreparedStatement st;
         ResultSet rs;
+        System.out.println(ANSI_PURPLE + "\n" +
+                "\n" +
+                "    _     /\\/|           _ _                    _                \n" +
+                "   / \\   |/\\/   __ _  __| (_)_ __    __ _ _ __ (_)_ __ ___   ___ \n" +
+                "  / _ \\ | '_ \\ / _` |/ _` | | '__|  / _` | '_ \\| | '_ ` _ \\ / _ \\\n" +
+                " / ___ \\| | | | (_| | (_| | | |    | (_| | | | | | | | | | |  __/\n" +
+                "/_/   \\_\\_| |_|\\__,_|\\__,_|_|_|     \\__,_|_| |_|_|_| |_| |_|\\___|\n" +
+                "\n");
         Scanner sc = new Scanner(System.in);
         System.out.println("Nombre del anime: ");
         nombre = sc.nextLine();
