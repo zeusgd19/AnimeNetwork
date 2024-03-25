@@ -386,7 +386,7 @@ public class Main {
                 "| '_ \\| | | / __|/ __/ _` | '_ \\ / _` |/ _ \\ / /                                \n" +
                 "| |_) | |_| \\__ \\ (_| (_| | | | | (_| | (_) |_|                                 \n" +
                 "|_.__/ \\__,_|___/\\___\\__,_|_| |_|\\__,_|\\___/(_)                                 \n" +
-                "\n");
+                "\n" + ANSI_RESET);
         String tipoGenero = sc.nextLine();
         String sql = "SELECT * FROM generoAnime WHERE genero = ?";
         pt = con.prepareStatement(sql);
@@ -431,7 +431,7 @@ public class Main {
                 "  / _ \\ | '_ \\ / _` |/ _` | | '__|  / _` | '_ \\| | '_ ` _ \\ / _ \\\n" +
                 " / ___ \\| | | | (_| | (_| | | |    | (_| | | | | | | | | | |  __/\n" +
                 "/_/   \\_\\_| |_|\\__,_|\\__,_|_|_|     \\__,_|_| |_|_|_| |_| |_|\\___|\n" +
-                "\n");
+                "\n" + ANSI_RESET);
         Scanner sc = new Scanner(System.in);
         System.out.println("Nombre del anime: ");
         nombre = sc.nextLine();
