@@ -148,7 +148,7 @@ public class Main {
         ResultSet rs;
         System.out.println("Dime el genero que estas buscando");
         String tipoGenero = sc.nextLine();
-        String sql = "SELECT * FROM generoAnime WHERE genero =2 ?";
+        String sql = "SELECT * FROM generoAnime WHERE genero = ?";
         pt = con.prepareStatement(sql);
         pt.setString(1, tipoGenero);
         rs = pt.executeQuery();
