@@ -166,42 +166,45 @@ public class Main {
         System.out.println("Genero del anime: ");
         genero = sc.nextLine();
 
-        query = "SELECT * FROM generoAnime WHERE genero = ?";
-        st = con.prepareStatement(query);
-        st.setString(1,genero);
+        rs = selectGenre(genero);
 
-        rs = st.executeQuery();
-        st.close();
         if(rs.next()){
             id_genero = rs.getInt("id_genero");
-            query = "INSERT INTO anime (nombre,id_genero) VALUES (?,?)";
-            st = con.prepareStatement(query);
-            st.setString(1,nombre);
-            st.setInt(2,id_genero);
-            st.executeUpdate();
-            st.close();
+            insertAnime(nombre, id_genero);
         } else {
-            rs.close();
             query = "INSERT INTO generoAnime (genero) VALUES (?)";
             st = con.prepareStatement(query);
             st.setString(1,genero);
             st.executeUpdate();
             st.close();
 
-            query = "SELECT * FROM generoAnime WHERE genero = ?";
-            st = con.prepareStatement(query);
-            st.setString(1,genero);
-            rs = st.executeQuery();
+            rs = selectGenre(genero);
             id_genero = rs.getInt("id_genero");
-            st.close();
             rs.close();
 
-            query = "INSERT INTO anime (nombre,id_genero) VALUES (?,?)";
-            st = con.prepareStatement(query);
-            st.setString(1,nombre);
-            st.setInt(2,id_genero);
-            st.executeUpdate();
-            st.close();
+            insertAnime(nombre, id_genero);
         }
+    }
+
+    private static ResultSet selectGenre(String genero) throws SQLException {
+        String query;
+        ResultSet rs;
+        PreparedStatement st;
+        query = "SELECT * FROM generoAnime WHERE genero = ?";
+        st = con.prepareStatement(query);
+        st.setString(1, genero);
+        rs = st.executeQuery();
+        return rs;
+    }
+
+    private static void insertAnime(String nombre, int id_genero) throws SQLException {
+        String query;
+        PreparedStatement st;
+        query = "INSERT INTO anime (nombre,id_genero) VALUES (?,?)";
+        st = con.prepareStatement(query);
+        st.setString(1, nombre);
+        st.setInt(2, id_genero);
+        st.executeUpdate();
+        st.close();
     }
 }
